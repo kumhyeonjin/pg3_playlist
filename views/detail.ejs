@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/main.css" />
+    <style>
+      .btn_good {
+        cursor: pointer;
+        border: 1px solid red;
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .btn_good svg {
+        border: 1px solid red;
+        position: relative;
+        width: 25px;
+        height: 25px;
+        transition: fill 0.3s ease-in;
+        fill: #e6e6e6;
+        z-index: -1;
+      }
+      .btn_good svg.on {
+        fill: #ff6b6b;
+      }
+      .goodcounter {
+        position: relative;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('nav.ejs') %>
+
+    <h1>상세페이지</h1>
+    <h2><%= data.postTitle %></h2>
+    <h2><%= data.postDate %></h2>
+    <p
+      class="btn_good"
+      data-good="<%= data.postPoint %>"
+      data-id=" <%= data._id %>"
+    >
+      <svg width="50" height="50" viewBox="0 0 50 50">
+        <path
+          d="M42.4 7.8c-4.6-4.6-12.1-4.6-16.8 0L25 9.6l-0.6-0.6c-4.6-4.6-12.1-4.6-16.8 0 -4.6 4.6-4.6 12.1 0 16.8l18.4 18.4c0.2 0.2 0.4 0.3 0.6 0.3s0.4-0.1 0.6-0.3l18.4-18.4C47 19.9 47 12.4 42.4 7.8zM39.7 24.4L25 39.1 10.3 24.4c-3.9-3.9-3.9-10.2 0-14.1 3.9-3.9 10.2-3.9 14.1 0l2.8 2.8c0.4 0.4 1 0.4 1.4 0l2.8-2.8C43.6 14.2 43.6 20.5 39.7 24.4z"
+        />
+      </svg>
+      <span class="goodcounter"><%= data.postPoint %></span>
+    </p>
+    <hr />
+    <button class="delete" data-id=" <%= data._id %>">삭제</button>
+    <a href="/edit/<%= data._id %>">수정하기</a>
+
+    <hr style="padding: 50px 0" />
+
+    <ul>
+      <% for ( list in data2 ){ %>
+      <li>
+        <a href="/detail/<%= data2[list]._id %>">
+          <p>글번호 : <%= data2[list]._id %></p>
+          <p>할일 : <%= data2[list].postTitle %></p>
+          <p>날짜 : <%= data2[list].postDate %></p>
+        </a>
+        <button class="delete" data-id=" <%= data2[list]._id %>">삭제</button>
+      </li>
+      <% } %>
+    </ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+      $(".delete").click(function (e) {
+        let num = e.target.dataset.id;
+        $.ajax({
+          method: "DELETE",
+          url: "/delete",
+          data: { _id: num },
+        })
+          .done(function (result) {
+            location.href="/"
+          })
+          .fail(function (xhr, textStatus, errorThrown) {
+            console.log(xhr, textStatus, errorThrown);
+          });
+      });
+
+      $(".btn_good").click(function (e) {
+        $(this).find("svg").addClass("on");
+
+        let num = e.target.dataset.id;
+        let num2 = parseInt(e.target.dataset.good) + 1;
+
+        $.ajax({
+          method: "put",
+          url: "/good",
+          data: { _id: num, postPoint: num2 },
+        })
+          .done(function (result) {
+            setTimeout(function () {
+              location.reload();
+            }, 600);
+          })
+          .fail(function (xhr, textStatus, errorThrown) {
+            console.log(xhr, textStatus, errorThrown);
+          });
+      });
+    </script>
+  </body>
+</html>

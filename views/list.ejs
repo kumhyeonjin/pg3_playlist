@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <style>
+    .catelist {
+      display: flex;
+    }
+    .catelist p {
+      padding: 1rem;
+      background-color: cadetblue;
+      margin: 0 1rem;
+    }
+    .list > li {
+      display: none;
+    }
+    .list > li.on {
+      display: block;
+    }
+    .randomCon {
+      position: fixed;
+      right: 10px;
+      top: 10px;
+      border: 1px solid red;
+      padding: 1rem;
+      background-color: burlywood;
+    }
+  </style>
+  <body>
+    <%- include('nav.ejs') %>
+    <hr />
+    <div class="catelist">
+      <p data-btnname="전체보기">전체보기</p>
+      <% for ( cate in post2 ){ %>
+      <p data-btnname="<%= post2[cate].catename%>">
+        <%= post2[cate].catename%>
+      </p>
+      <%}%>
+    </div>
+    <hr />
+    <h1>todo list <i class="fa-solid fa-bars"></i></h1>
+    <ul class="list">
+      <% for ( list in post ){ %>
+      <li data-cate="<%= post[list].category %>">
+        <a href="/detail/<%= post[list]._id %>">
+          <p>글번호 : <%= post[list]._id %></p>
+          <p>할일 : <%= post[list].postTitle %></p>
+          <p>날짜 : <%= post[list].postDate %></p>
+          <p>cate : <%= post[list].category %></p>
+        </a>
+        <button class="delete" data-id=" <%= post[list]._id %>">삭제</button>
+      </li>
+      <% } %>
+    </ul>
+    <button class="btnmore">더보기</button>
+
+    <div class="randomCon">
+      <button class="btnRandom">랜덤선택</button>
+      <div class="content">컨텐츠</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+      $(".delete").click(function (e) {
+        let num = e.target.dataset.id;
+        $.ajax({ method: "DELETE", url: "/delete", data: { _id: num } })
+          .done(function (result) {
+            $(e.target).parent("li").fadeOut();
+          })
+          .fail(function (xhr, textStatus, errorThrown) {
+            console.log(xhr, textStatus, errorThrown);
+          });
+      });
+
+      // const btns = document.querySelectorAll(".catelist > p");
+      // const postlist = document.querySelectorAll(".list > li");
+      // const btnmore = document.querySelector(".btnmore");
+      // btns.forEach((item) => {
+      //   item.addEventListener("click", (e) => {
+      //     let btname = e.target.dataset.btnname;
+      //     postlist.forEach((item2) => {
+      //       item2.classList.remove("on");
+      //       if (btnname == item2.dataset.cate || btnname == "전체보기")
+      //         item2.classList.add("on");
+      //     });
+      //   });
+      // });
+
+      const btns = document.querySelectorAll(".catelist > p");
+      const postlist = document.querySelectorAll(".list > li");
+      const btnmore = document.querySelector(".btnmore");
+      const btnRandom = document.querySelector(".btnRandom");
+      const randomCon = document.querySelector(".randomCon");
+      const con = randomCon.querySelector(".content");
+
+      // console.log(postlist.length);
+      btnRandom.addEventListener("click", () => {
+        let randomNum = Math.floor(Math.random() * postlist.length);
+        let randomText = $(".list > li").eq(randomNum).html();
+        console.log(randomText);
+        con.innerHTML = randomText;
+      });
+
+      btns.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          let btnname = e.target.dataset.btnname;
+          postlist.forEach((item2) => {
+            item2.classList.remove("on");
+            if (btnname == "전체보기" || btnname == item2.dataset.cate)
+              item2.classList.add("on");
+          });
+        });
+      });
+
+      let num = 3;
+      postlist.forEach((item, i) => {
+        if (i < num) {
+          item.classList.add("on");
+        }
+      });
+
+      btnmore.addEventListener("click", () => {
+        num += 3;
+        postlist.forEach((item, i) => {
+          if (i < num) {
+            item.classList.add("on");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Josefin+Slab&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Oleo+Script&family=Sanchez&family=Yuji+Boku&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/public/css/common.css" />
+    <link rel="stylesheet" href="/public/css/my_reset.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="hd">
+        <h1>playlist</h1>
+        <nav>
+          <a href="/">
+            <i class="fa-solid fa-headphones"></i>
+            A Theme Playlist</a
+          >
+          <a href="/edit1.html"><i class="fa-solid fa-plus"></i>Add</a>
+        </nav>
+      </header>
+      <div class="select_list">
+        <label for="cate">Select Playlist</label>
+        <select name="cate" id="category">
+          <option value="">나를 잠들게 하는 음악</option>
+          <option value="">지각했을 때 나를 재빠르게 하는 음악</option>
+          <option value="">평생 10곡만 들을 수 있다면</option>
+          <option value="">드라이브할 때 듣는 음악</option>
+          <option value="">JAZZ VIBE</option>
+          <option value="">운동할 때 듣는 음악</option>
+        </select>
+      </div>
+      <!-- <div>
+        <form action="/addcate" method="post">
+          <input type="text" name="catename" placeholder="플레이리스트명" />
+          <input type="submit" value="등록" />
+        </form>
+      </div> -->
+
+      <div class="addsong">
+        <input type="text" value="앨범사진" 앨범사진: />
+        <input type="text" value="제목/가수" />
+        <input type="text" value="앨범명" />
+        <input type="text" value="link" />
+      </div>
+      <!-- <input type="submit" value="Add" /> -->
+      <button class="btn_add">Add</button>
+    </div>
+  </body>
+</html>

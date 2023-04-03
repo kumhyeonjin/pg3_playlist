@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/main.css" />
+  </head>
+  <body>
+    <%- include('nav.ejs') %>
+    <h1>글쓰기 페이지 입니다.</h1>
+    <form action="/add" method="post">
+      <label>오늘의 할일 <input type="text" name="title" /></label>
+      <label>날자 <input type="date" name="date" /></label>
+      <label hidden>좋아요 <input type="text" name="good" value="0" /></label>
+
+      <br />
+      <label for="cate">카테고리 선택</label>
+      <select name="category" id="cate">
+        <% for (list in category) { %>
+        <option value="<%= category[list].catename %>">
+          <%= category[list].catename %>
+        </option>
+        <% } %>
+      </select>
+      <input type="submit" value="등록" />
+    </form>
+  </body>
+</html>

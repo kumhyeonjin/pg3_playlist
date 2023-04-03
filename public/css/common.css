@@ -1,0 +1,196 @@
+:root {
+  --font-Select: "Gowun Batang", serif;
+  --font-AlbumArti: "Josefin Slab", serif;
+  --font-list_title: "Nanum Pen Script", cursive;
+  font-family: "Noto Sans KR", sans-serif;
+  --font-nav: "Oleo Script", cursive;
+  --font-Song_title: "Sanchez", serif;
+  --font-logo: "Yuji Boku", serif;
+  --font-size: 20px;
+  --mw: 393px;
+  --width: 100%;
+  --gap1: 1rem;
+  --gap2: 2rem;
+}
+
+/* index list */
+
+a {
+  color: #000000;
+}
+.wrap {
+  border: 1px solid red;
+  width: var(--width);
+  max-width: var(--mw);
+  margin: auto;
+  background-image: url(/public/image/back.jpg);
+}
+
+.hd,
+.playlist {
+  text-align: center;
+}
+
+.hd h1 {
+  font-family: var(--font-logo);
+  font-size: 36px;
+  color: #635e5e;
+}
+
+.hd nav {
+  border-bottom: 2px solid #979797;
+  margin: var(--gap2) 0;
+  font-family: var(--font-nav);
+  font-size: 18px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.hd nav a {
+  margin-bottom: 5px;
+}
+
+.playlist {
+  font-family: var(--font-list_title);
+  font-size: 20px;
+}
+
+.playlist li {
+  margin: 3rem 0;
+}
+
+.list1_title,
+.list2_title,
+.list5_title,
+.list6_title {
+  border: 1px dotted gray;
+  height: 230px;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+
+.list1_title {
+  background: url(/public/image/index2_title_bg.png) no-repeat;
+}
+.list2_title {
+  background: url(/public/image/list2_title_bg\ 1.png) no-repeat;
+  color: white;
+}
+.list3_title {
+  background: url(/public/image/list3_title_bg\ 1.png) no-repeat;
+  background-size: cover;
+  height: 350px;
+  width: 100%;
+  border: 1px dotted lightcyan;
+}
+
+.list4_title {
+  background: url(/public/image/list4_title_bg.png) no-repeat;
+  background-size: cover;
+  height: 350px;
+  width: 100%;
+  border: 1px dotted lightcyan;
+}
+.list5_title {
+  background: url(/public/image/list5_title_bg.png) no-repeat;
+}
+.list6_title {
+  background: url(/public/image/list6_title_bg.png) no-repeat;
+}
+.list1_title h1,
+.list2_title h1,
+.list3_title h1,
+.list4_title h1,
+.list5_title h1,
+.list6_title h1 {
+  text-align: center;
+  margin-top: 40%;
+  font-family: var(--font-list_title);
+  font-size: 32px;
+}
+
+.playlist_1,
+.playlist_2,
+.playlist_3,
+.playlist_4,
+.playlist_5,
+.playlist_6 {
+  margin: var(--gap1);
+  /* border: 1px solid blue; */
+}
+
+.playlist_1 img,
+.playlist_2 img,
+.playlist_3 img,
+.playlist_4 img,
+.playlist_5 img,
+.playlist_6 img {
+  margin-left: 23%;
+}
+
+.playlist_1 p,
+.playlist_2 p,
+.playlist_3 p,
+.playlist_4 p,
+.playlist_5 p,
+.playlist_6 p {
+  text-align: center;
+}
+.song_title {
+  font-family: var(--font-Song_title);
+  font-size: 20px;
+}
+
+.artist,
+.Album {
+  font-family: var(--font-AlbumArti);
+}
+
+/* edit, delete */
+
+.select_list,
+.select_song {
+  border: 1px dotted lightslategray;
+  text-align: center;
+  padding: var(--gap1);
+}
+.select_list label,
+.select_song label {
+  font-family: var(--font-Select);
+  font-size: 20px;
+}
+.select_list select,
+.select_song select {
+  width: 80%;
+  height: 30px;
+  margin-top: var(--gap1);
+  border: 1px solid lightslategray;
+  border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.addsong {
+  border: 1px dotted lightgray;
+  margin-top: var(--gap2);
+  text-align: center;
+  width: 55%;
+  margin-left: 25%;
+  background-color: rgba(250, 250, 250, 0.5);
+}
+
+.addsong input {
+  height: 20px;
+  display: block;
+  margin: 1rem;
+  border-color: aliceblue;
+}
+.btn_add,
+.btn_delete {
+  align-self: center;
+  margin: var(--gap2) 0 var(--gap1) 45%;
+
+  border-radius: 1rem;
+  background-color: whitesmoke;
+  font-family: var(--font-nav);
+}
